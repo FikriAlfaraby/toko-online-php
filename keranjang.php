@@ -1,0 +1,60 @@
+<?php
+    include "./header.php";
+?>
+
+    <div class="heading">
+      <h1>Keranjang</h1>
+      <p><a href="shop.php">Shop >></a> Keranjang</p>
+    </div>
+
+    <section class="keranjang">
+      <table class="table table-hover striped mt-5">
+          <thead>
+              <tr>
+                  <th>NO</th><th>Nama Produk</th><th>Jumlah</th><th>Harga</th><th>Total</th><th>Aksi</th>
+              </tr>
+          </thead>
+          <tbody>
+              <?php
+              if(@$_SESSION['cart']){
+                $total_harga = 0;
+                  foreach (@$_SESSION['cart'] as $key_produk => $val_produk):
+              
+                  
+              ?>
+              <tr>
+                  <td><?=($key_produk+1)?>
+                  </td><td><?=$val_produk['nama_produk']?></td>
+                  <td><?=$val_produk['qty']?></td>
+                  <td><?="<span>Rp. </span>".$val_produk['harga']?></td>
+                  <td><?= "<span>Rp. </span>".$val_produk['harga'] *  $val_produk['qty']  ?></td>
+                  <td><a href="hapus_keranjang.php?id=<?=$key_produk?>" class="btn btn-danger"><strong>X</strong></a></td>
+              </tr>
+              
+              <?php 
+                  $total = $val_produk['harga'] * $val_produk['qty'];
+                  $total_harga += $total;
+                  endforeach; 
+                  echo("
+                  <tr>
+                    <td style='border:none;'><p><h2 class='total'>total : <span>Rp. ".$total_harga."</span></h2></p></td>
+                  </tr>
+                  <tr >
+                  <td style='border:none;' colspan='6'><a href='checkout.php' class='btn btn-primary'>Check Out</a></td>
+                </tr>  
+                
+                  ");
+              } else {
+                echo("
+                <tr>
+                  <td colspan='6'><p style='text-align:center'>Tidak Ada Produk di Keranjang</p></td>
+                </tr>
+                ");
+              }
+              ?>
+          </tbody>
+      </table>
+    </section>
+<?php
+    include "./footer.php";
+?>
