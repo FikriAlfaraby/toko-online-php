@@ -229,8 +229,7 @@ if($_SESSION['status_login_petugas']!=true){
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid my-3 mx-3">
-      <div class="row">
+      <div class="row my-3 mx-3">
         <div class="col-xl-3">
           <div class="card" style="width: 18rem;">
             <img src="../Petugas/gambar_petugas/<?=$_SESSION['foto']?>" class="card-img-top" alt="...">
@@ -240,26 +239,8 @@ if($_SESSION['status_login_petugas']!=true){
             </div>
           </div>
         </div>
-        <div class="col-xl-3">
-          <div class="card width: 12rem;">
-            
-            <div class="card-body">
-              <h5 class="card-title">Jumlah Pendapatan</h5>
-                <i class="fas fa-dollar-sign fa-2x text-gray-300 d-inline"></i>
-                <?php 
-                  include "../toko.php";
-                  $qry_get_buku=mysqli_query($conn,"select sum(subtotal) as SubTotal from detail_transaksi ");
-                  $b=mysqli_fetch_assoc($qry_get_buku);   
-                ?>
-              <span style="font-size:20px;" class="card-text"><?php echo($b['SubTotal']) ?></span>
-              <p></p>
-              <a href="#" class="btn btn-primary">Details</a>
-            </div>
-            
-          </div>
-        </div>
+        
       </div>
-    </div>
     
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
